@@ -6,7 +6,7 @@ import os
 import time
 import sys
 from character import Character
-from ascii_art import torch_art
+from ascii_art import torch_art, coin_art
 
 
 class Main:
@@ -67,7 +67,7 @@ class Main:
             elif choice == "3" and not self.character.has_torch:  # Check if the character does not have the torch
                 self.character.has_torch = True  # Grab the torch
                 self.type_text_slowly("You grab the torch.\n", 0.001)
-                print(torch_art)
+                print(torch_art)  # Print out torch ASCII art
                 print("\nPress any key to continue...")
                 msvcrt.getch()  # Wait for a keypress
                 os.system("cls")  # Clear the console screen
@@ -81,7 +81,7 @@ class Main:
         if choice == "1":
             self.type_text_slowly("After walking down the left tunnel for several minutes\n"
                                   "You encounter a large monster with furry, flammable-looking\n"
-                                  "fur.?\n", 0.001)
+                                  "fur.\n", 0.001)
             print("\nPress any key to continue...")
             msvcrt.getch()  # Wait for a keypress
             os.system("cls")  # Clear the console screen
@@ -91,7 +91,7 @@ class Main:
                     print("What will you do now?\n1. Run Away\n2. Attack")
                     choice2 = input("Enter your choice: ")
                 else:
-                    print("What will you do now?\n1. Run Away\n2. Attack\n3. Burn the monster\n")
+                    print("What will you do now?\n1. Run Away\n2. Attack\n\x1b[32m3. Burn the monster\x1b[0m\n")
                     choice2 = input("Enter your choice: ")
 
                 if choice2 == "1":
@@ -109,13 +109,53 @@ class Main:
                     print("\nPress any key to continue...")
                     msvcrt.getch()  # Wait for a keypress
                     sys.exit()
+                if choice2 == "3" and self.character.has_torch:  # Check if the character has the torch
+                    os.system("cls")  # Clear the console screen
+                    self.character.has_torch = False  # Use up the torch on the monster
+                    self.type_text_slowly("You attack the monster with your torch. The monster\n"
+                                          "goes up in flames, however so does your torch.\n\n"
+                                          "Torch has been removed from your inventory.", 0.001)
 
+                    print("\nPress any key to continue...")
+                    msvcrt.getch()  # Wait for a keypress
+                    os.system("cls")  # Clear the console screen
+                    break
         else:
             self.type_text_slowly("After walking down the right tunnel for several minutes\n"
                                   "You find a vast room, filled with nothing but a small chest.\n", 0.001)
             print("\nPress any key to continue...")
             msvcrt.getch()  # Wait for a keypress
             os.system("cls")  # Clear the console screen
+
+            while True:
+                if self.character.coins == 0:  # Check if the character has no coins
+                    print("What will you do now?\n")
+                    print("1. Continue")
+                    print("2. Open the chest")
+
+                else:
+                    print("What will you do now?\n")
+                    print("1. Continue")
+
+                choice3 = input("\nEnter your choice: ")
+
+                if choice3 == "1":
+                    self.type_text_slowly("You continue through the dungeon...\n", 0.001)
+                    print("\nPress any key to continue...")
+                    msvcrt.getch()  # Wait for a keypress
+                    os.system("cls")  # Clear the console screen
+                    break
+
+                elif choice3 == "2":
+                    self.character.add_coins(10)  # Grab ten coins
+                    self.type_text_slowly("You open the chest and find ten golden coins.\n", 0.001)
+                    print(coin_art + '  x10')  # Print out coin ASCII art
+                    print("\nPress any key to continue...")
+                    msvcrt.getch()  # Wait for a keypress
+                    os.system("cls")  # Clear the console screen
+                    continue
+                else:
+                    print("Invalid choice. Please try again.\n")
 
     def main(self):
         self.ask_name()

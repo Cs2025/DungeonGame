@@ -1,6 +1,5 @@
 # ASCII torch art credit: [Zot/Source:https://ascii.co.uk/art/torch]
 
-
 # ASCII art for torch
 
 torch_art = '''
@@ -23,4 +22,12 @@ torch_art = '''
           |    |
           |    |
           |    |
+'''
+
+# ASCII art for coins
+
+coin_art = '''
+  .--.
+ |  $ |  
+  '--' 
 '''
