@@ -3,19 +3,19 @@
 class Character:
     def __init__(self, name):
         self.name = name
-        self.items = []
+        self.inventory = []
         self.has_torch = False
         self.coins = 0
 
     def add_item(self, item):
-        self.items.append(item)
+        self.inventory.append(item)
 
     def remove_item(self, item):
-        if item in self.items:
-            self.items.remove(item)
+        if item in self.inventory:
+            self.inventory.remove(item)
 
     def has_item(self, item):
-        return item in self.items
+        return item in self.inventory
 
     def add_coins(self, amount):
         self.coins += amount
@@ -28,3 +28,6 @@ class Character:
 
     def get_coins(self):
         return self.coins
+
+    def get_inventory(self):
+        return self.inventory

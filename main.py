@@ -21,6 +21,7 @@ class Main:
             time.sleep(delay)
 
     def ask_name(self):
+        os.system("cls")
         print(f"Hello, {self.character.name}!")
         print("\nPress any key to continue...")
         msvcrt.getch()
@@ -64,8 +65,9 @@ class Main:
                 msvcrt.getch()  # Wait for a keypress
                 os.system("cls")  # Clear the console screen
                 break
-            elif choice == "3" and not self.character.has_torch:  # Check if the character does not have the torch
+            elif choice == "3":
                 self.character.has_torch = True  # Grab the torch
+                self.character.add_item("Torch")  # Add the torch to the inventory
                 self.type_text_slowly("You grab the torch.\n", 0.001)
                 print(torch_art)  # Print out torch ASCII art
                 print("\nPress any key to continue...")
@@ -112,6 +114,7 @@ class Main:
                 if choice2 == "3" and self.character.has_torch:  # Check if the character has the torch
                     os.system("cls")  # Clear the console screen
                     self.character.has_torch = False  # Use up the torch on the monster
+                    self.character.remove_item("Torch")  # Remove torch from user's inventory
                     self.type_text_slowly("You attack the monster with your torch. The monster\n"
                                           "goes up in flames, however so does your torch.\n\n"
                                           "Torch has been removed from your inventory.", 0.001)
@@ -134,7 +137,7 @@ class Main:
                     print("2. Open the chest")
 
                 else:
-                    print("What will you do now?\n")
+                    print("What will you do now?")
                     print("1. Continue")
 
                 choice3 = input("\nEnter your choice: ")
@@ -157,9 +160,23 @@ class Main:
                 else:
                     print("Invalid choice. Please try again.\n")
 
+    def dungeon_first_floor(self):
+        print("You have reached the first floor of the dungeon!\n")
+
+        # Print out user inventory before the first floor begins
+        print("Inventory:")
+        for item in self.character.get_inventory():
+            print(f"- {item}")
+        print("Coins: " + str(self.character.coins))
+
+        print("\nPress any key to continue...")
+        msvcrt.getch()  # Wait for a keypress
+        os.system("cls")  # Clear the console screen
+
     def main(self):
         self.ask_name()
         self.enter_dungeon()
+        self.dungeon_first_floor()
 
 
 if __name__ == '__main__':
