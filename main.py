@@ -80,7 +80,7 @@ class Main:
     def dungeon_start(self, choice):
         if choice == "1":
             self.type_text_slowly("After walking down the left tunnel for several minutes\n"
-                                  "You encounter a large monster with furry, flammable-looking\n"
+                                  "You encounter a large monster with furry, \x1b[1mflammable-looking\x1b[0m\n"
                                   "fur.\n", 0.001)
             print("\nPress any key to continue...")
             msvcrt.getch()  # Wait for a keypress
