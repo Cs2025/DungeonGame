@@ -1,0 +1,13 @@
+To do:
+
+add a third option for burning the monster if you grabbed a torch (for the option, add a *Special* text,
+showing that the option is only available because you have a special item from earlier in the game
+
+add a feature where if you kill the monster with the torch, it is removed from inv
+
+add a treasure you can pick up and bring to the end of the game for flavor text if you go right
+(not in the treasure box early on, implement this feature later where if you go right with the torch,
+avoiding the monster, and bring the torch to late-game, you can burn down a wall or something, revealing
+the special treasure)
+
+? Add ASCII art for when you pick up the torch, etc.
