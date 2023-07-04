@@ -143,6 +143,7 @@ class Main:
                 choice3 = input("\nEnter your choice: ")
 
                 if choice3 == "1":
+                    os.system("cls")
                     self.type_text_slowly("You continue through the dungeon...\n", 0.001)
                     print("\nPress any key to continue...")
                     msvcrt.getch()  # Wait for a keypress
@@ -150,6 +151,7 @@ class Main:
                     break
 
                 elif choice3 == "2":
+                    os.system("cls")
                     self.character.add_coins(10)  # Grab ten coins
                     self.type_text_slowly("You open the chest and find ten golden coins.\n", 0.001)
                     print(coin_art + '  x10')  # Print out coin ASCII art
@@ -165,20 +167,19 @@ class Main:
         print("New feature unlocked: Show inventory (press i)\n")
 
         while True:
-            os.system("cls")  # Clear the console screen
-
             print("\nPress any key to continue... \nPress I for inventory")
 
             key = msvcrt.getch().decode().lower()  # Wait for a keypress and convert to lowercase
 
             if key == "i":
-                os.system("cls")  # Clear the console screen
+                os.system("cls")
                 print("Inventory:")
                 for item in self.character.get_inventory():
                     print(f"- {item}")
                 print("Coins: " + str(self.character.coins))
                 print("\nPress any key to continue...")
-                msvcrt.getch()  # Wait for a keypress
+                msvcrt.getch()
+                os.system("cls")
             else:
                 break
         os.system("cls")
