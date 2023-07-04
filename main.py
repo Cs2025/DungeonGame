@@ -162,16 +162,83 @@ class Main:
 
     def dungeon_first_floor(self):
         print("You have reached the first floor of the dungeon!\n")
+        print("New feature unlocked: Show inventory (press i)\n")
 
-        # Print out user inventory before the first floor begins
-        print("Inventory:")
-        for item in self.character.get_inventory():
-            print(f"- {item}")
-        print("Coins: " + str(self.character.coins))
+        while True:
+            os.system("cls")  # Clear the console screen
 
+            print("\nPress any key to continue... \nPress I for inventory")
+
+            key = msvcrt.getch().decode().lower()  # Wait for a keypress and convert to lowercase
+
+            if key == "i":
+                os.system("cls")  # Clear the console screen
+                print("Inventory:")
+                for item in self.character.get_inventory():
+                    print(f"- {item}")
+                print("Coins: " + str(self.character.coins))
+                print("\nPress any key to continue...")
+                msvcrt.getch()  # Wait for a keypress
+            else:
+                break
+        os.system("cls")
+        self.type_text_slowly("Once you reach the first floor entrance, you notice\n"
+                              "a shady merchant in the center of the room. Behind him are\n"
+                              "three doors, each marked with a '?' sign.\n", 0.001)
         print("\nPress any key to continue...")
         msvcrt.getch()  # Wait for a keypress
         os.system("cls")  # Clear the console screen
+
+        while True:
+            print("What will you do now?\n")
+            print("1. Go through the left door")
+            print("2. Go through the center door")
+            print("3. Go through the right door")
+            print("4. Talk to the merchant\n")
+            print("I. Show inventory")
+
+            choice4 = input("\nEnter your choice: ")
+
+            if choice4 == "1":
+                os.system("cls")
+                self.type_text_slowly("You proceed through the left door...\n", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+                break
+
+            elif choice4 == "2":
+                os.system("cls")
+                self.type_text_slowly("You proceed through the center door...\n", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+                break
+            elif choice4 == "3":
+                os.system("cls")
+                self.type_text_slowly("You proceed through the right door...\n", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+                break
+            elif choice4 == "4":
+                os.system("cls")
+                self.type_text_slowly("You walk up to the shady merchant...\n", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+                break
+            elif choice4.lower() == "i":
+                os.system("cls")
+                print("Inventory:")
+                for item in self.character.get_inventory():
+                    print(f"- {item}")
+                print("Coins: " + str(self.character.coins))
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+            else:
+                print("Invalid choice. Please try again.\n")
 
     def main(self):
         self.ask_name()
