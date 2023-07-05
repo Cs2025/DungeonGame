@@ -5,6 +5,7 @@ class Character:
         self.name = name
         self.inventory = []
         self.has_torch = False
+        self.has_diamond = False
         self.coins = 0
 
     def add_item(self, item):
@@ -30,4 +31,9 @@ class Character:
         return self.coins
 
     def get_inventory(self):
-        return self.inventory
+        inventory = list(self.inventory)  # Make a copy of the inventory list
+
+        if self.has_diamond:
+            inventory.append("Diamond")
+
+        return inventory

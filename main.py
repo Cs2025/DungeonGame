@@ -69,7 +69,7 @@ class Main:
                 msvcrt.getch()  # Wait for a keypress
                 os.system("cls")  # Clear the console screen
                 break
-            elif choice == "3":
+            elif choice == "3" and not self.character.has_torch:
                 os.system("cls")
                 self.character.has_torch = True  # Grab the torch
                 self.character.add_item("Torch")  # Add the torch to the inventory
@@ -80,6 +80,7 @@ class Main:
                 os.system("cls")  # Clear the console screen
                 continue
             else:
+                os.system("cls")
                 print("Invalid choice. Please try again.\n")
 
         self.dungeon_start(choice)
@@ -110,20 +111,23 @@ class Main:
                     msvcrt.getch()  # Wait for a keypress
                     sys.exit()
 
-                if choice2 == "2":
+                elif choice2 == "2":
                     os.system("cls")  # Clear the console screen
                     self.type_text_slowly("You tried your best to attack the monster, to no avail.\n"
                                           "You were picked up and swallowed whole. The end.\n", 0.001)
                     print("\nPress any key to continue...")
                     msvcrt.getch()  # Wait for a keypress
                     sys.exit()
-                if choice2 == "3" and self.character.has_torch:  # Check if the character has the torch
+                elif choice2 == "3" and self.character.has_torch:  # Check if the character has the torch
                     os.system("cls")  # Clear the console screen
                     self.character.has_torch = False  # Use up the torch on the monster
                     self.character.remove_item("Torch")  # Remove torch from user's inventory
                     self.type_text_slowly("You attack the monster with your torch. The monster\n"
                                           "goes up in flames, however so does your torch.\n\n"
                                           "Torch has been removed from your inventory.", 0.001)
+                else:
+                    os.system("cls")
+                    print("Invalid choice. Please try again.\n")
 
                     print("\nPress any key to continue...")
                     msvcrt.getch()  # Wait for a keypress
@@ -166,6 +170,7 @@ class Main:
                     os.system("cls")  # Clear the console screen
                     continue
                 else:
+                    os.system("cls")
                     print("Invalid choice. Please try again.\n")
 
     def dungeon_first_floor(self):
@@ -212,7 +217,7 @@ class Main:
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
-                floor1.choice4_option_1(self)
+                floor1.choice_4_option_1(self)
                 break
 
             elif choice4 == "2":
@@ -221,6 +226,7 @@ class Main:
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
+                floor1.choice_4_option_2(self)
                 break
             elif choice4 == "3":
                 os.system("cls")
@@ -246,6 +252,7 @@ class Main:
                 msvcrt.getch()
                 os.system("cls")
             else:
+                os.system("cls")
                 print("Invalid choice. Please try again.\n")
 
     def main(self):
