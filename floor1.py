@@ -1,10 +1,10 @@
 import os
 import msvcrt
 import sys
-from ascii_art import diamond_art
+from ascii_art import diamond_art, coin_art
 
 
-def choice_4_option_1(self):
+def choice_option_1(self):
     self.type_text_slowly("After entering the door on the left, you encounter\n"
                           "a grassy enclosure with a large hole in the center.\n"
                           "On the left, there is a small cave, but the entrance\n"
@@ -27,23 +27,23 @@ def choice_4_option_1(self):
             print("2. Maneuver past the hole")
             print("I. Show inventory")
 
-        choice4_1 = input("\nEnter your choice: ")
+        choice = input("\nEnter your choice: ")
 
-        if choice4_1 == "1":
+        if choice == "1":
             os.system("cls")
             self.type_text_slowly("You attempt to jump over the hole."
                                   "You did not make it. The end.", 0.001)
             print("\nPress any key to continue...")
             sys.exit()
 
-        elif choice4_1 == "2":
+        elif choice == "2":
             os.system("cls")
             self.type_text_slowly("You make it past the hole, into the cave entrance.", 0.001)
             print("\nPress any key to continue...")
             msvcrt.getch()
             os.system("cls")
             break
-        elif choice4_1 == "3" and self.character.has_torch:
+        elif choice == "3" and self.character.has_torch:
             os.system("cls")
             self.type_text_slowly("You head left towards the blocked cave entrance.\n", 0.001)
             print("\nPress any key to continue...")
@@ -64,15 +64,15 @@ def choice_4_option_1(self):
                 print("1. Turn back")
                 if not self.character.has_diamond:
                     print("2. Take the diamond")
-                choice_4_1_1 = input("Enter your choice: ")
-                if choice_4_1_1 == "1":
+                choice = input("Enter your choice: ")
+                if choice == "1":
                     os.system("cls")
                     self.type_text_slowly("You turn back around and exit the cave.", 0.001)
                     print("\nPress any key to continue...")
                     msvcrt.getch()
                     os.system("cls")
                     break
-                elif choice_4_1_1 == "2" and not self.character.has_diamond:
+                elif choice == "2" and not self.character.has_diamond:
                     os.system("cls")
                     self.type_text_slowly("You grab the diamond.", 0.001)
                     self.character.has_diamond = True
@@ -80,7 +80,7 @@ def choice_4_option_1(self):
                     print("\nPress any key to continue...")
                     msvcrt.getch()
                     os.system("cls")
-                elif choice_4_1_1.lower() == "i":
+                elif choice.lower() == "i":
                     os.system("cls")
                     print("Inventory:")
                     for item in self.character.get_inventory():
@@ -95,7 +95,7 @@ def choice_4_option_1(self):
                     os.system("cls")
                     print("Invalid choice. Please try again.\n")
             continue  # Go back to the beginning of the loop
-        elif choice4_1.lower() == "i":
+        elif choice.lower() == "i":
             os.system("cls")
             print("Inventory:")
             for item in self.character.get_inventory():
@@ -109,7 +109,7 @@ def choice_4_option_1(self):
             print("Invalid choice. Please try again.\n")
 
 
-def choice_4_option_2(self):
+def choice_option_2(self):
     self.type_text_slowly("You try to open the second door, however you quickly\n"
                           "realize that the 'door' is actually just a picture of one.\n"
                           "You move the picture aside and find a safe on the wall.", 0.001)
@@ -119,20 +119,37 @@ def choice_4_option_2(self):
     os.system("cls")
 
     while True:
+        safe_opened = False
         print("What will you do now?\n")
-        print("1. Turn around")
-        print("2. Try unlocking the safe")
-        print("I. Show inventory")
+        if safe_opened:
+            print("1. Turn around")
+            print("I. Show inventory")
+        else:
+            print("1. Turn around")
+            print("2. Try unlocking the safe")
+            print("I. Show inventory")
 
-        choice4_2 = input("\nEnter your choice: ")
+        choice = input("\nEnter your choice: ")
 
-        if choice4_2 == "1":
-            pass
+        if choice == "1":
+            os.system("cls")
+            self.type_text_slowly("You turn back around.\n", 0.001)
+            os.system("cls")
+            break
+        if choice == "2" and not safe_opened:
+            os.system("cls")
+            self.type_text_slowly("You try opening the safe, and to your surprise\n"
+                                  "the safe is already unlocked! Inside you find 5 golden coins.", 0.001)
+            self.character.add_coins(5)  # Grab five coins
+            safe_opened = True
+            print(coin_art + '  x5')  # Print out coin ASCII art
 
-        if choice4_2 == "2":
-            pass
+            print("\nPress any key to continue...")
+            msvcrt.getch()  # Wait for a keypress
+            os.system("cls")  # Clear the console screen
+            continue
 
-        elif choice4_2.lower() == "i":
+        elif choice.lower() == "i":
             os.system("cls")
             print("Inventory:")
             for item in self.character.get_inventory():
@@ -144,3 +161,11 @@ def choice_4_option_2(self):
         else:
             os.system("cls")
             print("Invalid choice. Please try again.\n")
+
+
+def choice_option_3(self):
+    pass
+
+
+def choice_option_4(self):
+    pass

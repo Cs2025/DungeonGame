@@ -98,12 +98,12 @@ class Main:
             while True:
                 if not self.character.has_torch:  # Check if the character has the torch
                     print("What will you do now?\n1. Run Away\n2. Attack")
-                    choice2 = input("Enter your choice: ")
                 else:
                     print("What will you do now?\n1. Run Away\n2. Attack\n\x1b[32m3. Burn the monster\x1b[0m\n")
-                    choice2 = input("Enter your choice: ")
 
-                if choice2 == "1":
+                choice = input("Enter your choice: ")
+
+                if choice == "1":
                     os.system("cls")  # Clear the console screen
                     self.type_text_slowly("You tried your best to run away, to no avail.\n"
                                           "You were eaten alive feet-first. The end.\n", 0.001)
@@ -111,14 +111,14 @@ class Main:
                     msvcrt.getch()  # Wait for a keypress
                     sys.exit()
 
-                elif choice2 == "2":
+                elif choice == "2":
                     os.system("cls")  # Clear the console screen
                     self.type_text_slowly("You tried your best to attack the monster, to no avail.\n"
                                           "You were picked up and swallowed whole. The end.\n", 0.001)
                     print("\nPress any key to continue...")
                     msvcrt.getch()  # Wait for a keypress
                     sys.exit()
-                elif choice2 == "3" and self.character.has_torch:  # Check if the character has the torch
+                elif choice == "3" and self.character.has_torch:  # Check if the character has the torch
                     os.system("cls")  # Clear the console screen
                     self.character.has_torch = False  # Use up the torch on the monster
                     self.character.remove_item("Torch")  # Remove torch from user's inventory
@@ -150,9 +150,9 @@ class Main:
                     print("What will you do now?")
                     print("1. Continue")
 
-                choice3 = input("\nEnter your choice: ")
+                choice = input("\nEnter your choice: ")
 
-                if choice3 == "1":
+                if choice == "1":
                     os.system("cls")
                     self.type_text_slowly("You continue through the dungeon...\n", 0.001)
                     print("\nPress any key to continue...")
@@ -160,7 +160,7 @@ class Main:
                     os.system("cls")  # Clear the console screen
                     break
 
-                elif choice3 == "2":
+                elif choice == "2":
                     os.system("cls")
                     self.character.add_coins(10)  # Grab ten coins
                     self.type_text_slowly("You open the chest and find ten golden coins.\n", 0.001)
@@ -209,40 +209,40 @@ class Main:
             print("4. Talk to the merchant\n")
             print("I. Show inventory")
 
-            choice4 = input("\nEnter your choice: ")
+            choice = input("\nEnter your choice: ")
 
-            if choice4 == "1":
+            if choice == "1":
                 os.system("cls")
                 self.type_text_slowly("You proceed through the left door...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
-                floor1.choice_4_option_1(self)
+                floor1.choice_option_1(self)
                 break
 
-            elif choice4 == "2":
+            elif choice == "2":
                 os.system("cls")
-                self.type_text_slowly("You proceed through the center door...\n", 0.001)
+                self.type_text_slowly("You proceed towards the center door...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
-                floor1.choice_4_option_2(self)
-                break
-            elif choice4 == "3":
+                floor1.choice_option_2(self)
+                continue
+            elif choice == "3":
                 os.system("cls")
                 self.type_text_slowly("You proceed through the right door...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
                 break
-            elif choice4 == "4":
+            elif choice == "4":
                 os.system("cls")
                 self.type_text_slowly("You walk up to the shady merchant...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
                 break
-            elif choice4.lower() == "i":
+            elif choice.lower() == "i":
                 os.system("cls")
                 print("Inventory:")
                 for item in self.character.get_inventory():
