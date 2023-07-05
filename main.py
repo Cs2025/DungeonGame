@@ -5,6 +5,8 @@ import msvcrt
 import os
 import time
 import sys
+
+import floor1
 from character import Character
 from ascii_art import torch_art, coin_art
 
@@ -54,18 +56,21 @@ class Main:
                 choice = input("Enter your choice: ")
 
             if choice == "1":
+                os.system("cls")
                 self.type_text_slowly("You go down the left tunnel...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()  # Wait for a keypress
                 os.system("cls")  # Clear the console screen
                 break
             elif choice == "2":
+                os.system("cls")
                 self.type_text_slowly("You go down the right tunnel...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()  # Wait for a keypress
                 os.system("cls")  # Clear the console screen
                 break
             elif choice == "3":
+                os.system("cls")
                 self.character.has_torch = True  # Grab the torch
                 self.character.add_item("Torch")  # Add the torch to the inventory
                 self.type_text_slowly("You grab the torch.\n", 0.001)
@@ -81,6 +86,7 @@ class Main:
 
     def dungeon_start(self, choice):
         if choice == "1":
+            os.system("cls")
             self.type_text_slowly("After walking down the left tunnel for several minutes\n"
                                   "You encounter a large monster with furry, \x1b[1mflammable-looking\x1b[0m\n"
                                   "fur.\n", 0.001)
@@ -206,6 +212,7 @@ class Main:
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
+                floor1.choice4_option_1(self)
                 break
 
             elif choice4 == "2":
