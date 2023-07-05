@@ -37,3 +37,17 @@ class Character:
             inventory.append("Diamond")
 
         return inventory
+
+    def buy_dagger(self):
+        if self.coins >= 10:
+            self.coins -= 10
+            self.add_item("Dagger")
+            return True
+        return False
+
+    def buy_healing_potion(self):
+        if self.coins >= 5:
+            self.coins -= 5
+            self.add_item("Healing Potion")
+            return True
+        return False

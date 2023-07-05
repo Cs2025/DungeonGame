@@ -119,9 +119,8 @@ def choice_option_2(self):
     os.system("cls")
 
     while True:
-        safe_opened = False
         print("What will you do now?\n")
-        if safe_opened:
+        if self.safe_opened:
             print("1. Turn around")
             print("I. Show inventory")
         else:
@@ -136,12 +135,12 @@ def choice_option_2(self):
             self.type_text_slowly("You turn back around.\n", 0.001)
             os.system("cls")
             break
-        if choice == "2" and not safe_opened:
+        if choice == "2" and not self.safe_opened:
             os.system("cls")
             self.type_text_slowly("You try opening the safe, and to your surprise\n"
                                   "the safe is already unlocked! Inside you find 5 golden coins.", 0.001)
             self.character.add_coins(5)  # Grab five coins
-            safe_opened = True
+            self.safe_opened = True  # Update safe_opened variable
             print(coin_art + '  x5')  # Print out coin ASCII art
 
             print("\nPress any key to continue...")
@@ -168,4 +167,65 @@ def choice_option_3(self):
 
 
 def choice_option_4(self):
-    pass
+    self.type_text_slowly("The merchant welcomes you to his shop. 'Hello {}, welcome to my shop!\n"
+                          "We have the best deals in all of the dungeon.\n".format(self.character.name), 0.001)
+    print("\nPress any key to continue...")
+    msvcrt.getch()
+    os.system("cls")
+
+    while True:
+        print("What would you like to buy?\n")
+        if self.character.coins >= 10:
+            print("1. Dagger (10 coins)")
+        if self.character.coins >= 5:
+            print("2. Healing Potion (5 coins)")
+        print("3. Exit shop")
+        print("I. Show inventory\n")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            if self.character.buy_dagger():
+                os.system("cls")
+                self.type_text_slowly("You purchased a dagger for 10 coins.", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+            else:
+                os.system("cls")
+                self.type_text_slowly("You don't have enough coins to buy a dagger.", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+        elif choice == "2":
+            if self.character.buy_healing_potion():
+                os.system("cls")
+                self.type_text_slowly("You purchased a healing potion for 5 coins.", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+            else:
+                os.system("cls")
+                self.type_text_slowly("You don't have enough coins to buy a healing potion.", 0.001)
+                print("\nPress any key to continue...")
+                msvcrt.getch()
+                os.system("cls")
+        elif choice == "3":
+            os.system("cls")
+            self.type_text_slowly("You leave the merchant's shop.", 0.001)
+            print("\nPress any key to continue...")
+            msvcrt.getch()
+            os.system("cls")
+            break
+        elif choice.lower() == "i":
+            os.system("cls")
+            print("Inventory:")
+            for item in self.character.get_inventory():
+                print(f"- {item}")
+            print("Coins: " + str(self.character.coins))
+            print("\nPress any key to continue...")
+            msvcrt.getch()
+            os.system("cls")
+        else:
+            os.system("cls")
+            print("Invalid choice. Please try again.\n")

@@ -215,33 +215,30 @@ class Main:
                 os.system("cls")
                 self.type_text_slowly("You proceed through the left door...\n", 0.001)
                 print("\nPress any key to continue...")
-                msvcrt.getch()
+                msvcrt.getch()  # Wait for a keypress
+                os.system("cls")  # Clear the console screen
+                floor1.choice_option_1(self)  # Call the choice_option_1 method for the left door
                 os.system("cls")
-                floor1.choice_option_1(self)
                 break
-
             elif choice == "2":
                 os.system("cls")
                 self.type_text_slowly("You proceed towards the center door...\n", 0.001)
                 print("\nPress any key to continue...")
                 msvcrt.getch()
                 os.system("cls")
-                floor1.choice_option_2(self)
-                continue
+                floor1.choice_option_2(self)  # Call the choice_option_2 method for the center door
+                os.system("cls")
             elif choice == "3":
                 os.system("cls")
                 self.type_text_slowly("You proceed through the right door...\n", 0.001)
                 print("\nPress any key to continue...")
-                msvcrt.getch()
-                os.system("cls")
+                msvcrt.getch()  # Wait for a keypress
+                os.system("cls")  # Clear the console screen
                 break
             elif choice == "4":
                 os.system("cls")
-                self.type_text_slowly("You walk up to the shady merchant...\n", 0.001)
-                print("\nPress any key to continue...")
-                msvcrt.getch()
-                os.system("cls")
-                break
+                floor1.choice_option_4(self)  # Call the choice_option_4 method for the merchant's shop
+                os.system("cls")  # Clear the console screen
             elif choice.lower() == "i":
                 os.system("cls")
                 print("Inventory:")
