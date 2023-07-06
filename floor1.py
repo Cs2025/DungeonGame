@@ -163,7 +163,18 @@ def choice_option_2(self):
 
 
 def choice_option_3(self):
-    pass
+    self.type_text_slowly("After entering the right door, you find\n"
+                          "a large, open space with two cave entrances.\n"
+                          "The entrance on the left is unguarded, however\n"
+                          "the right entrance is blocked by a large orc, who\n"
+                          "does not seem all that friendly.", 0.001)
+
+    print("\nPress any key to continue...")
+    msvcrt.getch()
+    os.system("cls")
+
+    while True:
+        print("What will you do now?\n")
 
 
 def choice_option_4(self):
